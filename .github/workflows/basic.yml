@@ -37,7 +37,7 @@ jobs:
         run: |
           Rscript -e '
              cleanSugg <- function(x) {
-             gsub("\\n| |\\\\\\(.*", "", strsplit(x, ",")[[1]])
+             gsub("\\n| |.>.*", "", strsplit(x, ",")[[1]])
              }
           sugtxt <- packageDescription(basename(getwd()))[["Suggests"]]
           suggs <- cleanSugg(sugtxt)
