@@ -35,8 +35,8 @@ jobs:
         run: (Rscript -e 'print(sort(rownames(installed.packages())))')
       - name: install missing suggested
         run: |
-          (Rscript -e "cleanSugg = function(x) gsub('\\\\n| |\\\\(.*', '', strsplit(x, ',')[[1]]);
-                sugtxt = packageDescription(basename(getwd()))$Suggests;
+          (Rscript -e "cleanSugg = function(x) gsub('\\\\n| |\\\\\\(.*', '', strsplit(x, ',')[[1]]);
+                sugtxt = packageDescription(basename(getwd()))[['Suggests']];
                 suggs = cleanSugg(sugtxt);
                 BiocManager::install(suggs, type='both')")
       - name: do r cmd check
